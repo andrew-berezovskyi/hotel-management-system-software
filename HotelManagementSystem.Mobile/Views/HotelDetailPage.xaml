@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HotelMobileApp.Views.HotelDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:HotelMobileApp.ViewModels"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#F5F5F5">
+
+    <!-- BindingContext задаємо в code-behind, щоб передати hotelId через Shell -->
+    <ContentPage.BindingContext>
+        <viewModels:HotelDetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="16">
+
+            <!-- Кнопка Back -->
+            <ImageButton
+                Source="icon_back_arrow.png"
+                HeightRequest="34"
+                WidthRequest="34"
+                BackgroundColor="#EEEEEE"
+                CornerRadius="12"
+                Padding="8"
+                Command="{Binding BackCommand}" />
+
+            <!-- Головне фото готелю -->
+            <Frame CornerRadius="20" HasShadow="False" HeightRequest="240">
+                <Grid>
+                    <Image
+                        Source="{Binding Hotel.Image}"
+                        Aspect="AspectFill" />
+                </Grid>
+            </Frame>
+
+            <!-- Назва + локація + ціна -->
+            <Grid ColumnDefinitions="*,Auto">
+                <VerticalStackLayout>
+                    <Label Text="{Binding Hotel.Name}"
+                           FontSize="22"
+                           FontAttributes="Bold" />
+
+                    <HorizontalStackLayout Spacing="4">
+                        <Image Source="icon_location_gray.png" WidthRequest="14" />
+                        <Label Text="{Binding Hotel.City}"
+                               FontSize="14"
+                               TextColor="#777" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Label
+                    Grid.Column="1"
+                    Text="{Binding PriceText}"
+                    FontSize="18"
+                    TextColor="#FF7A00"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <!-- Room facilities -->
+            <VerticalStackLayout>
+                <Label Text="Room facilities"
+                       FontSize="16"
+                       FontAttributes="Bold" />
+
+                <Label Text="{Binding Hotel.RoomFacilities}"
+                       FontSize="14"
+                       TextColor="#555" />
+            </VerticalStackLayout>
+
+            <!-- Public facilities -->
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Public facilities"
+                       FontSize="16"
+                       FontAttributes="Bold" />
+
+                <Label Text="See more"
+                       Grid.Column="1"
+                       TextColor="#195BA9"
+                       FontSize="13" />
+            </Grid>
+
+            <HorizontalStackLayout Spacing="12">
+                <Frame Padding="12" CornerRadius="14" BackgroundColor="#FFFFFF">
+                    <Image Source="icon_wifi.png" WidthRequest="24" />
+                </Frame>
+                <Frame Padding="12" CornerRadius="14" BackgroundColor="#FFFFFF">
+                    <Image Source="icon_pool.png" WidthRequest="24" />
+                </Frame>
+                <Frame Padding="12" CornerRadius="14" BackgroundColor="#FFFFFF">
+                    <Image Source="icon_food.png" WidthRequest="24" />
+                </Frame>
+                <Frame Padding="12" CornerRadius="14" BackgroundColor="#FFFFFF">
+                    <Image Source="icon_park.png" WidthRequest="24" />
+                </Frame>
+            </HorizontalStackLayout>
+
+            <!-- Room type dropdown -->
+            <VerticalStackLayout>
+                <Label Text="Room type"
+                       FontSize="16"
+                       FontAttributes="Bold" />
+
+                <Frame CornerRadius="12" Padding="12" BackgroundColor="White">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding SelectedRoomType}" />
+                        <Image Source="icon_arrow_down.png"
+                               Grid.Column="1"
+                               WidthRequest="18">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToggleRoomTypeCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Frame>
+
+                <!-- випадний список -->
+                <VerticalStackLayout IsVisible="{Binding IsRoomTypeOpen}">
+                    <Frame Padding="12" BackgroundColor="White" CornerRadius="12">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Family Room">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectRoomTypeCommand}"
+                                                          CommandParameter="Family Room" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="Standard Room">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectRoomTypeCommand}"
+                                                          CommandParameter="Standard Room" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="Deluxe Room">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectRoomTypeCommand}"
+                                                          CommandParameter="Deluxe Room" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="Suite">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectRoomTypeCommand}"
+                                                          CommandParameter="Suite" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <!-- Description -->
+            <VerticalStackLayout>
+                <Label Text="Description"
+                       FontSize="16"
+                       FontAttributes="Bold" />
+                <Label Text="{Binding Hotel.Description}"
+                       FontSize="14"
+                       TextColor="#555" />
+            </VerticalStackLayout>
+
+            <!-- Map -->
+            <VerticalStackLayout>
+                <Label Text="Map"
+                       FontSize="16"
+                       FontAttributes="Bold" />
+
+                <Image
+                    Source="{Binding Hotel.MapImage}"
+                    HeightRequest="200">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenMapCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </VerticalStackLayout>
+
+            <!-- Like + Booking now -->
+            <Grid ColumnDefinitions="Auto,*" Padding="0,10">
+                <ImageButton
+                    Source="{Binding LikeIcon}"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    BackgroundColor="White"
+                    CornerRadius="14"
+                    Command="{Binding ToggleFavoriteCommand}" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="Booking now"
+                    HeightRequest="48"
+                    FontSize="16"
+                    TextColor="White"
+                    CornerRadius="16"
+                    BackgroundColor="#0A63C7"
+                    Command="{Binding BookingCommand}" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

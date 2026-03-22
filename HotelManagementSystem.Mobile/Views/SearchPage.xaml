@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HotelMobileApp.Views.SearchPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:HotelMobileApp.ViewModels"
+    x:Name="SearchPageRoot"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#F5F5F5">
+
+    <ContentPage.BindingContext>
+        <viewModels:SearchViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- HEADER -->
+        <Grid
+            Grid.Row="0"
+            Padding="16,20,16,12"
+            ColumnDefinitions="Auto,*,Auto"
+            BackgroundColor="#F5F5F5">
+
+            <ImageButton
+                WidthRequest="32"
+                HeightRequest="32"
+                Padding="0"
+                BackgroundColor="Transparent"
+                Source="icon_back_arrow.png"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Aspect="AspectFit" />
+
+            <Label
+                Grid.Column="1"
+                Text="Search"
+                FontSize="18"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="24" Padding="16,0,16,16">
+
+                <!-- пошук -->
+                <Grid ColumnDefinitions="*,Auto" HeightRequest="52" Margin="0,0,0,8">
+                    <Frame
+                        Grid.Column="0"
+                        CornerRadius="14"
+                        Padding="14,0"
+                        HasShadow="False"
+                        BackgroundColor="White"
+                        IsClippedToBounds="True">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <Image
+                                Source="icon_search_field.png"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                            <Entry
+                                Grid.Column="1"
+                                Text="{Binding Query}"
+                                Placeholder="Find the best Hotels"
+                                PlaceholderColor="#B0B0B0"
+                                FontSize="14"
+                                TextColor="#222222"
+                                BackgroundColor="Transparent"
+                                ReturnType="Search" />
+                        </Grid>
+                    </Frame>
+
+                    <Frame
+                        Grid.Column="1"
+                        Margin="8,0,0,0"
+                        WidthRequest="52"
+                        HeightRequest="52"
+                        CornerRadius="16"
+                        Padding="0"
+                        HasShadow="False">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#1E88E5" Offset="0.0" />
+                                <GradientStop Color="#0A63C7" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                        <Image
+                            Source="icon_search_blue.png"
+                            WidthRequest="22"
+                            HeightRequest="22"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+
+                <!-- EXPLORE -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="0"
+                        ColumnDefinitions="*,Auto"
+                        Margin="0,0,0,8">
+                        <Label
+                            Text="Explore"
+                            FontSize="18"
+                            FontAttributes="Bold" />
+                        <Label
+                            Grid.Column="1"
+                            Text="Go"
+                            FontSize="13"
+                            TextColor="#195BA9">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ExploreMoreCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <CollectionView
+                        Grid.Row="1"
+                        ItemsSource="{Binding ExploreHotels}"
+                        ItemsLayout="HorizontalList"
+                        HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="200" Margin="0,0,12,0">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.OpenHotelDetailCommand, Source={x:Reference SearchPageRoot}}"
+                                            CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+
+                                    <Frame
+                                        HasShadow="False"
+                                        CornerRadius="18"
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        IsClippedToBounds="True">
+                                        <Grid RowDefinitions="*,Auto,Auto" Margin="0,0,0,8">
+                                            <Image
+                                                Grid.Row="0"
+                                                Source="{Binding Image}"
+                                                Aspect="AspectFill"
+                                                HeightRequest="120" />
+
+                                            <Label
+                                                Grid.Row="1"
+                                                Text="{Binding Name}"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Margin="8,6,8,0" />
+
+                                            <StackLayout
+                                                Grid.Row="2"
+                                                Orientation="Horizontal"
+                                                Spacing="4"
+                                                Margin="8,0,8,8">
+                                                <Image
+                                                    Source="icon_location_gray.png"
+                                                    WidthRequest="12"
+                                                    HeightRequest="12"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    Text="{Binding City}"
+                                                    FontSize="12"
+                                                    TextColor="#777" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <!-- YOU MAY BE INTERESTED -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="0"
+                        ColumnDefinitions="*,Auto"
+                        Margin="0,0,0,8">
+                        <Label
+                            Text="You may be interested"
+                            FontSize="18"
+                            FontAttributes="Bold" />
+                        <Label
+                            Grid.Column="1"
+                            Text="See more"
+                            FontSize="13"
+                            TextColor="#195BA9">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding InterestedMoreCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <CollectionView
+                        Grid.Row="1"
+                        ItemsSource="{Binding InterestedHotels}"
+                        ItemsLayout="HorizontalList"
+                        HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="200" Margin="0,0,12,0">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.OpenHotelDetailCommand, Source={x:Reference SearchPageRoot}}"
+                                            CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+
+                                    <Frame
+                                        HasShadow="False"
+                                        CornerRadius="18"
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        IsClippedToBounds="True">
+                                        <Grid RowDefinitions="*,Auto,Auto" Margin="0,0,0,8">
+                                            <Image
+                                                Grid.Row="0"
+                                                Source="{Binding Image}"
+                                                Aspect="AspectFill"
+                                                HeightRequest="120" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Text="{Binding Name}"
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Margin="8,6,8,0" />
+                                            <StackLayout
+                                                Grid.Row="2"
+                                                Orientation="Horizontal"
+                                                Spacing="4"
+                                                Margin="8,0,8,8">
+                                                <Image
+                                                    Source="icon_location_gray.png"
+                                                    WidthRequest="12"
+                                                    HeightRequest="12"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    Text="{Binding City}"
+                                                    FontSize="12"
+                                                    TextColor="#777" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

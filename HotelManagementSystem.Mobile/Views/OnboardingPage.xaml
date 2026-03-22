@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HotelMobileApp.Views.OnboardingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="Black">
+
+    <Grid>
+
+        <!-- Фонове фото -->
+        <Image
+            Source="onboarding_bg.png"
+            Aspect="AspectFill" />
+
+        <!-- Градієнт донизу -->
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#00000000" Offset="0.0" />
+                    <GradientStop Color="#B3000000" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+
+        <!-- Контент -->
+        <Grid Padding="24"
+              RowDefinitions="Auto,*,Auto">
+
+            <!-- Текст -->
+            <Label
+                x:Name="TitleLabel"
+                Grid.Row="0"
+                Margin="0,60,0,0"
+                Text="Enjoy your vacation with&#10;the best hotel services!"
+                TextColor="White"
+                FontSize="24"
+                FontAttributes="Bold"
+                Opacity="0" />
+
+            <!-- Кнопка -->
+            <Grid
+                x:Name="ButtonContainer"
+                Grid.Row="2"
+                Margin="0,0,0,40"
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                TranslationY="80"
+                Opacity="0">
+
+                <Frame
+                    x:Name="ButtonFrame"
+                    Padding="20,0"
+                    BackgroundColor="#DD4B4B4B"
+                    CornerRadius="32"
+                    HasShadow="False"
+                    HeightRequest="64"
+                    HorizontalOptions="FillAndExpand">
+
+                    <Grid ColumnDefinitions="Auto,*"
+                          VerticalOptions="Center">
+
+                        <!-- КРУГЛИЙ ПОВЗУНОК -->
+                        <Frame
+                            x:Name="Thumb"
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            CornerRadius="20"
+                            BackgroundColor="#333333"
+                            HasShadow="False"
+                            Padding="0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            TranslationX="0">
+
+                            <Image
+                                Source="ic_arrow_right.png"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+
+                            <!-- Жести напряму на колі -->
+                            <Frame.GestureRecognizers>
+                                <PanGestureRecognizer PanUpdated="OnThumbPanUpdated" />
+                                <TapGestureRecognizer Tapped="OnGetStartedTapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <!-- Текст -->
+                        <Label
+                            Grid.Column="1"
+                            Text="Get Started"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11217.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem", "hotel management system\HotelManagementSystem.csproj", "{5FD316DF-F28E-4DBD-8D8C-16FC9CF388B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Models", "HotelManagementSystem.Models\HotelManagementSystem.Models.csproj", "{393ABE45-F835-4912-A4B6-64C0046D14F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Data", "HotelManagementSystem.Data\HotelManagementSystem.Data.csproj", "{F7D90AC3-2917-4543-83BB-10C7728D265B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Services", "HotelManagementSystem.Services\HotelManagementSystem.Services.csproj", "{9A13EB94-975A-4553-BAFD-45BD30E003D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Helpers", "HotelManagementSystem.Helpers\HotelManagementSystem.Helpers.csproj", "{72E54026-A27B-4E6E-865B-987557EBF4AC}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TheKyivHotel", "..\..\Users\aa200\source\repos\TheKyivHotel\", "{FD1B9F84-4949-3290-D217-CBE911914C0F}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_57238"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\Users\aa200\source\repos\TheKyivHotel\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57238\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_57238"
+		Release.AspNetCompiler.PhysicalPath = "..\..\Users\aa200\source\repos\TheKyivHotel\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57238\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57238"
+		SlnRelativePath = "..\..\Users\aa200\source\repos\TheKyivHotel\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Voice", "HotelManagementSystem.Voice\HotelManagementSystem.Voice.csproj", "{A359AFCC-7FA0-4491-AA49-730B5791D805}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FD316DF-F28E-4DBD-8D8C-16FC9CF388B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FD316DF-F28E-4DBD-8D8C-16FC9CF388B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FD316DF-F28E-4DBD-8D8C-16FC9CF388B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FD316DF-F28E-4DBD-8D8C-16FC9CF388B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393ABE45-F835-4912-A4B6-64C0046D14F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393ABE45-F835-4912-A4B6-64C0046D14F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393ABE45-F835-4912-A4B6-64C0046D14F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393ABE45-F835-4912-A4B6-64C0046D14F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D90AC3-2917-4543-83BB-10C7728D265B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D90AC3-2917-4543-83BB-10C7728D265B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D90AC3-2917-4543-83BB-10C7728D265B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D90AC3-2917-4543-83BB-10C7728D265B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A13EB94-975A-4553-BAFD-45BD30E003D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A13EB94-975A-4553-BAFD-45BD30E003D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A13EB94-975A-4553-BAFD-45BD30E003D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A13EB94-975A-4553-BAFD-45BD30E003D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E54026-A27B-4E6E-865B-987557EBF4AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E54026-A27B-4E6E-865B-987557EBF4AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E54026-A27B-4E6E-865B-987557EBF4AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E54026-A27B-4E6E-865B-987557EBF4AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD1B9F84-4949-3290-D217-CBE911914C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD1B9F84-4949-3290-D217-CBE911914C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD1B9F84-4949-3290-D217-CBE911914C0F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD1B9F84-4949-3290-D217-CBE911914C0F}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{A359AFCC-7FA0-4491-AA49-730B5791D805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A359AFCC-7FA0-4491-AA49-730B5791D805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A359AFCC-7FA0-4491-AA49-730B5791D805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A359AFCC-7FA0-4491-AA49-730B5791D805}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CE560EF-F3CD-4DC3-975E-3072455AA651}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HotelMobileApp.Views.SignInPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <Grid Padding="24,40,24,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!-- title -->
+                <RowDefinition Height="Auto" />
+                <!-- form -->
+                <RowDefinition Height="Auto" />
+                <!-- remember + forgot -->
+                <RowDefinition Height="Auto" />
+                <!-- button -->
+                <RowDefinition Height="Auto" />
+                <!-- separator -->
+                <RowDefinition Height="Auto" />
+                <!-- socials -->
+                <RowDefinition Height="Auto" />
+                <!-- bottom text -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <Label
+                Grid.Row="0"
+                Text="Sign in"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Margin="0,0,0,24" />
+
+            <!-- FORM -->
+            <StackLayout
+                x:Name="FormContainer"
+                Grid.Row="1"
+                Spacing="16"
+                Opacity="0"
+                TranslationY="40">
+
+                <!-- NAME -->
+                <Grid RowDefinitions="Auto,Auto">
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*" Margin="8,0,8,0">
+                        <Label
+                            Text="Your name"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center" />
+                        <BoxView
+                            Grid.Column="1"
+                            HeightRequest="1"
+                            Margin="8,0,0,0"
+                            VerticalOptions="Center"
+                            BackgroundColor="#333333" />
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="1"
+                        Padding="12,4"
+                        CornerRadius="18"
+                        HasShadow="False"
+                        BackgroundColor="White"
+                        BorderColor="#333333">
+                        <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+                            <Image
+                                Source="icon_user.png"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                            <Entry
+                                Grid.Column="1"
+                                Text="{Binding Name}"
+                                Placeholder="Input"
+                                PlaceholderColor="#B0B0B0"
+                                FontSize="14"
+                                TextColor="#222222"
+                                ReturnType="Next" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <!-- EMAIL -->
+                <Grid RowDefinitions="Auto,Auto">
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*" Margin="8,0,8,0">
+                        <Label
+                            Text="Email"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center" />
+                        <BoxView
+                            Grid.Column="1"
+                            HeightRequest="1"
+                            Margin="8,0,0,0"
+                            VerticalOptions="Center"
+                            BackgroundColor="#333333" />
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="1"
+                        Padding="12,4"
+                        CornerRadius="18"
+                        HasShadow="False"
+                        BackgroundColor="White"
+                        BorderColor="#333333">
+                        <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+                            <Image
+                                Source="icon_email.png"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                            <Entry
+                                Grid.Column="1"
+                                Text="{Binding Email}"
+                                Placeholder="Input"
+                                PlaceholderColor="#B0B0B0"
+                                Keyboard="Email"
+                                FontSize="14"
+                                TextColor="#222222"
+                                ReturnType="Next" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <!-- PASSWORD -->
+                <Grid RowDefinitions="Auto,Auto">
+                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*" Margin="8,0,8,0">
+                        <Label
+                            Text="Set password"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center" />
+                        <BoxView
+                            Grid.Column="1"
+                            HeightRequest="1"
+                            Margin="8,0,0,0"
+                            VerticalOptions="Center"
+                            BackgroundColor="#333333" />
+                    </Grid>
+
+                    <Frame
+                        Grid.Row="1"
+                        Padding="12,4"
+                        CornerRadius="18"
+                        HasShadow="False"
+                        BackgroundColor="White"
+                        BorderColor="#333333">
+                        <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+                            <Image
+                                Source="icon_lock.png"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                VerticalOptions="Center"
+                                Margin="0,0,8,0" />
+                            <Entry
+                                Grid.Column="1"
+                                Text="{Binding Password}"
+                                Placeholder="Input"
+                                PlaceholderColor="#B0B0B0"
+                                IsPassword="True"
+                                FontSize="14"
+                                TextColor="#222222"
+                                ReturnType="Done" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <!-- Error message -->
+                <Label
+                    x:Name="ErrorLabel"
+                    Text="{Binding ErrorMessage}"
+                    TextColor="Red"
+                    FontSize="12"
+                    IsVisible="{Binding HasError}"
+                    Opacity="0" />
+            </StackLayout>
+
+            <!-- Remember + forgot -->
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="Auto,*"
+                Margin="0,16,0,0">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalOptions="Center">
+                    <CheckBox
+                        IsChecked="{Binding RememberMe}" />
+                    <Label
+                        Text="Remember me"
+                        FontSize="13"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+                <Label
+                    Grid.Column="1"
+                    Text="Forgot password?"
+                    FontSize="13"
+                    HorizontalOptions="End"
+                    TextColor="#999999">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <!-- Log in button -->
+            <Grid Grid.Row="3" Margin="0,24,0,16">
+                <Frame
+                    x:Name="LoginButtonFrame"
+                    HeightRequest="56"
+                    CornerRadius="16"
+                    HasShadow="True"
+                    Padding="0"
+                    IsClippedToBounds="True">
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#30323A" Offset="0.0" />
+                                <GradientStop Color="#195BA9" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+
+                        <Label
+                            Text="Log in"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLoginTapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <!-- Separator -->
+            <Grid
+                Grid.Row="4"
+                Margin="0,0,0,16"
+                ColumnDefinitions="*,Auto,*">
+                <BoxView
+                    Grid.Column="0"
+                    HeightRequest="1"
+                    BackgroundColor="#DDDDDD"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Text="Or sign up with"
+                    FontSize="12"
+                    TextColor="#888888"
+                    Margin="8,0" />
+                <BoxView
+                    Grid.Column="2"
+                    HeightRequest="1"
+                    BackgroundColor="#DDDDDD"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <!-- Social buttons -->
+            <Grid
+                Grid.Row="5"
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="12"
+                Margin="0,0,0,24">
+
+                <!-- Google -->
+                <Frame
+                    CornerRadius="10"
+                    HasShadow="False"
+                    BorderColor="#DDDDDD"
+                    BackgroundColor="White"
+                    Padding="0,8">
+                    <Grid>
+                        <Image
+                            Source="logo_google.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoogleCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Frame>
+
+                <!-- Facebook -->
+                <Frame
+                    Grid.Column="1"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    BorderColor="#DDDDDD"
+                    BackgroundColor="White"
+                    Padding="0,8">
+                    <Grid>
+                        <Image
+                            Source="logo_facebook.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FacebookCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Frame>
+
+                <!-- Apple -->
+                <Frame
+                    Grid.Column="2"
+                    CornerRadius="10"
+                    HasShadow="False"
+                    BorderColor="#DDDDDD"
+                    BackgroundColor="White"
+                    Padding="0,8">
+                    <Grid>
+                        <Image
+                            Source="logo_apple.png"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AppleCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <!-- Bottom text -->
+            <StackLayout
+                Grid.Row="6"
+                Orientation="Horizontal"
+                HorizontalOptions="Center"
+                Spacing="4"
+                Margin="0,16,0,0">
+                <Label
+                    Text="Don't have an account yet?"
+                    FontSize="13"
+                    TextColor="#666666" />
+                <Label
+                    Text="Sign up"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    TextColor="#195BA9">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
